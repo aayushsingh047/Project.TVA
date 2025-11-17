@@ -1,0 +1,62 @@
+### Base URL
+@baseUrl = http://localhost:8000/api
+
+### Register User
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "password123",
+  "name": "John Doe"
+}
+
+### Login User
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+
+### Get Current User
+GET {{baseUrl}}/auth/me
+
+### List Rooms
+GET {{baseUrl}}/rooms?page=1&limit=10
+
+### Get Single Room
+GET {{baseUrl}}/rooms/room_id_here
+
+### Create Room (Admin)
+POST {{baseUrl}}/rooms
+Content-Type: application/json
+Authorization: Bearer your_jwt_token_here
+
+{
+  "name": "Luxury Suite",
+  "description": "Premium room with all amenities",
+  "price": 200,
+  "capacity": 2,
+  "amenities": ["WiFi", "TV", "Minibar", "Jacuzzi"]
+}
+
+### Checkout
+POST {{baseUrl}}/checkout
+Content-Type: application/json
+Authorization: Bearer your_jwt_token_here
+
+{
+  "roomId": "room_id_here",
+  "checkIn": "2024-12-20",
+  "checkOut": "2024-12-22",
+  "guests": 2
+}
+
+### Get User Orders
+GET {{baseUrl}}/orders
+Authorization: Bearer your_jwt_token_here
+
+### Logout
+POST {{baseUrl}}/auth/logout

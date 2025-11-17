@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seasons Hotel TVA, India - Luxury 5-Star Accommodation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif;}
+html {scroll-behavior: smooth;}
+body {background-color:#fff; color:#333;}
+
+/* Added max-width container for proper desktop layout */
+.container {max-width:1400px; margin:0 auto; width:100%; padding:0 50px;}
+
+/* Sticky Header */
+nav {
+  display:flex; 
+  justify-content:space-between; 
+  align-items:center; 
+  padding:20px 50px; 
+  position:sticky; 
+  top:0;
+  background: rgba(255,255,255,0.98); 
+  z-index:100; 
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+}
+
+nav .logo {font-family:'Playfair Display', serif; font-size:28px; font-weight:bold; color:#1a1a1a;}
+nav ul {list-style:none; display:flex; gap:30px;}
+nav ul li {cursor:pointer; font-weight:500; transition:0.3s; color:#333;}
+nav ul li:hover {color:#c9a961;}
+nav ul li a {text-decoration:none; color:inherit;}
+
+header {position:relative; height:100vh; overflow:hidden; display:flex; flex-direction: column; justify-content: center; align-items: center; text-align:center; color:#fff;}
+header video {position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1;}
+header .overlay {position:relative; z-index:1; backdrop-filter: blur(2px);}
+header h1 {font-family:'Playfair Display', serif; font-size:72px; margin-bottom:20px; text-shadow:3px 3px 10px rgba(0,0,0,0.6); font-weight:700;}
+header p {font-size:24px; margin-bottom:30px; text-shadow:2px 2px 6px rgba(0,0,0,0.6); font-weight:300; letter-spacing:1px;}
+header button {padding:16px 40px; font-size:16px; border:2px solid #fff; background:transparent; color:#fff; cursor:pointer; transition:0.3s; font-weight:600; letter-spacing:1px;}
+header button:hover {background:#c9a961; border-color:#c9a961; color:#1a1a1a;}
+
+section {padding:120px 50px;}
+.section-title {font-family:'Playfair Display', serif; font-size:48px; text-align:center; margin-bottom:60px; color:#1a1a1a; font-weight:700;}
+
+/* Rooms Grid */
+.rooms {display:grid; grid-template-columns: repeat(auto-fit, minmax(350px,1fr)); gap:40px; margin-bottom:60px; max-width:1400px; margin-left:auto; margin-right:auto;}
+.room {border:none; overflow:hidden; border-radius:12px; position:relative; cursor:pointer; transition:0.4s; box-shadow:0 8px 16px rgba(0,0,0,0.1);}
+.room:hover {transform: translateY(-8px); box-shadow:0 15px 35px rgba(0,0,0,0.2);}
+.room img {width:100%; height:280px; display:block; transition:0.5s; object-fit:cover;}
+.room:hover img {transform:scale(1.08);}
+.room-info {padding:30px; background:#fff;}
+.room-info h3 {font-family:'Playfair Display', serif; font-size:26px; margin-bottom:12px; color:#1a1a1a; font-weight:700;}
+.room-info p {font-size:15px; color:#666; margin-bottom:15px; line-height:1.6;}
+.room-info span {font-weight:700; font-size:18px; color:#c9a961;}
+.room-features {font-size:13px; color:#999; margin-top:12px; display:flex; flex-wrap:wrap; gap:8px;}
+.room-features span {background:#f5f5f5; padding:6px 12px; border-radius:20px; font-weight:500; color:#555;}
+.room button {padding:12px 28px; border:none; background:#1a1a1a; color:#fff; cursor:pointer; margin-top:15px; border-radius:6px; font-weight:600; transition:0.3s;}
+.room button:hover {background:#c9a961; color:#1a1a1a;}
+
+/* Amenities Section - Added gradient background */
+.amenities {
+  background: linear-gradient(135deg, #f9f7f4 0%, #eae5df 100%); 
+  padding:120px 50px;
+}
+.amenities-grid {display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:40px; margin-top:60px; max-width:1400px; margin-left:auto; margin-right:auto;}
+.amenity-card {text-align:center; padding:40px 30px; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:0.3s;}
+.amenity-card:hover {transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.12);}
+.amenity-card h4 {font-size:20px; margin:15px 0; color:#1a1a1a; font-weight:700;}
+.amenity-card p {color:#666; line-height:1.6; font-size:14px;}
+.amenity-icon {font-size:48px; margin-bottom:10px;}
+
+/* Testimonials Section - Added luxurious dark background with gradient */
+.testimonials {
+  padding:120px 50px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color:#fff;
+}
+.testimonials .section-title {color:#c9a961;}
+.testimonials-grid {display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:30px; margin-top:60px; max-width:1400px; margin-left:auto; margin-right:auto;}
+.testimonial {background:rgba(255,255,255,0.08); padding:35px; border-radius:12px; border-left:4px solid #c9a961; backdrop-filter: blur(10px); transition:0.3s; border:1px solid rgba(201,169,97,0.2);}
+.testimonial:hover {background:rgba(255,255,255,0.12); border-color:#c9a961;}
+.testimonial p {color:#e0e0e0; margin-bottom:20px; line-height:1.8; font-size:15px;}
+.testimonial-author {font-weight:700; color:#c9a961; margin-top:15px; font-size:16px;}
+.stars {color:#c9a961; font-size:14px; margin:10px 0; letter-spacing:2px;}
+
+footer {background-color:#1a1a1a; color:#fff; padding:60px 50px; text-align:center;}
+footer p {margin-bottom:15px; line-height:1.8;}
+footer a {color:#c9a961; text-decoration:none; margin:0 15px; transition:0.3s;}
+footer a:hover {color:#fff;}
+
+@media(max-width:768px) {
+  nav {padding:15px 20px;}
+  nav ul {gap:15px; flex-wrap:wrap;}
+  section {padding:80px 20px;}
+  .section-title {font-size:36px;}
+  header h1 {font-size:48px;}
+  .rooms {grid-template-columns:1fr;}
+  .amenities-grid {grid-template-columns:repeat(auto-fit, minmax(200px,1fr));}
+  .testimonials-grid {grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">SEASONS HOTEL</div>
+    <ul>
+        <li onclick="scrollToSection('home')">Home</li>
+        <li onclick="scrollToSection('rooms')">Rooms</li>
+        <li><a href="dining.html">Dining</a></li>
+        <li><a href="hotel.html">Bookings</a></li>
+        <li><a href="login.html" id="authLink">Login</a></li>
+    </ul>
+</nav>
+
+<header id="home">
+    <video autoplay muted loop playsinline>
+        <source src="videos/project_video.mp4" type="video/mp4">
+        Your browser does not support video.
+    </video>
+    
+    <div class="overlay">
+        <h1>Seasons Hotel TVA</h1>
+        <p>Luxury & Elegance in the Heart of India</p>
+    </div>
+</header>
+
+<section id="rooms">
+    <div class="section-title">Our Signature Rooms</div>
+    <div class="rooms">
+        <div class="room">
+            <img src="images/room_1.jpg" alt="Royal Suite">
+            <div class="room-info">
+                <h3>Royal Suite</h3>
+                <p>Experience luxury with our premium king-bed suite featuring breathtaking city views and modern amenities.</p>
+                <p><span>₹1500-3000/Night</span></p>
+                <div class="room-features">
+                    <span>King Bed</span>
+                    <span>City View</span>
+                    <span>WiFi</span>
+                    <span>AC</span>
+                </div>
+                <button onclick="window.location.href='hotel.html'">Book Now</button>
+            </div>
+        </div>
+        <div class="room">
+            <img src="images/room_2.jpg" alt="Premier Suite">
+            <div class="room-info">
+                <h3>Premier Suite</h3>
+                <p>Indulge in our spacious premier collection with premium amenities, spa access, and dedicated concierge service.</p>
+                <p><span>₹2000-3500/Night</span></p>
+                <div class="room-features">
+                    <span>Double Bed</span>
+                    <span>City View</span>
+                    <span>WiFi</span>
+                    <span>AC</span>
+                    <span>Balcony</span>
+                    <span>Room Service</span>
+                </div>
+                <button onclick="window.location.href='hotel.html'">Book Now</button>
+            </div>
+        </div>
+        <div class="room">
+            <img src="images/room_3.jpg" alt="Executive Suite">
+            <div class="room-info">
+                <h3>Executive Suite</h3>
+                <p>Ultimate luxury awaits in our exclusive executive collection with private garden views and full-service amenities.</p>
+                <p><span>₹2500-5000/Night</span></p>
+                <div class="room-features">
+                    <span>Premium Bed</span>
+                    <span>Double Bed</span>
+                    <span>City View</span>
+                    <span>WiFi</span>
+                    <span>AC</span>
+                    <span>Balcony</span>
+                    <span>Room Service</span>
+                    <span>Garden View</span>
+                    <span>Gym Access</span>
+                    <span>Concierge</span>
+                </div>
+                <button onclick="window.location.href='hotel.html'">Book Now</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="amenities">
+    <div class="section-title">World-Class Amenities</div>
+    <div class="amenities-grid">
+        <div class="amenity-card">
+            <div class="amenity-icon">🏊</div>
+            <h4>Olympic Pool</h4>
+            <p>Refresh yourself in our stunning heated outdoor pool with professional facilities.</p>
+        </div>
+        <div class="amenity-card">
+            <div class="amenity-icon">🍽️</div>
+            <h4>Fine Dining</h4>
+            <p>Savor world-class cuisine at our award-winning restaurants and bars.</p>
+        </div>
+        <div class="amenity-card">
+            <div class="amenity-icon">💆</div>
+            <h4>Spa & Wellness</h4>
+            <p>Experience rejuvenation at our luxury spa with professional therapists.</p>
+        </div>
+        <div class="amenity-card">
+            <div class="amenity-icon">🏋️</div>
+            <h4>Fitness Center</h4>
+            <p>State-of-the-art gym with personal trainers and modern equipment.</p>
+        </div>
+        <div class="amenity-card">
+            <div class="amenity-icon">🚗</div>
+            <h4>Concierge Service</h4>
+            <p>24/7 personalized assistance for all your travel and hospitality needs.</p>
+        </div>
+        <div class="amenity-card">
+            <div class="amenity-icon">📶</div>
+            <h4>Business Center</h4>
+            <p>Fully equipped meeting rooms and high-speed internet connectivity.</p>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <div class="section-title">Guest Reviews</div>
+    <div class="testimonials-grid">
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"Seasons Hotel TVA is an absolute gem! The staff was incredibly attentive, the rooms were immaculate, and the views were spectacular. Highly recommended!"</p>
+            <div class="testimonial-author">- ZAXX </div>
+        </div>
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"A truly luxurious experience. From the moment we checked in, everything was perfect. The dining was exceptional and the spa services were top-notch."</p>
+            <div class="testimonial-author">- Damp</div>
+        </div>
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"Best hotel experience ever! The location is perfect, amenities are world-class, and the team goes above and beyond for guests. Will definitely return."</p>
+            <div class="testimonial-author">- Aru</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Seasons Hotel TVA, India | All Rights Reserved</p>
+    <p>
+        <a href="https://www.facebook.com/SeasonsHotelTVA" target="_blank">Facebook</a> |
+        <a href="https://www.instagram.com/SeasonsHotelTVA" target="_blank">Instagram</a> |
+        <a href="https://www.twitter.com/SeasonsHotelTVA" target="_blank">Twitter</a>
+    </p>
+    <p style="margin-top:20px; font-size:13px; color:#999;">123 Luxury Lane, City Center, India | +91-1234-567890 | info@seasonhotel.com</p>
+</footer>
+
+<script src="api.js"></script>
+<script src="script.js"></script>
+<script>
+  window.addEventListener('load', () => {
+    const authLink = document.getElementById('authLink');
+    if (APIService.isLoggedIn()) {
+      authLink.innerText = 'Logout';
+      authLink.href = '#';
+      authLink.onclick = (e) => {
+        e.preventDefault();
+        APIService.logout();
+        location.reload();
+      };
+    }
+  });
+</script>
+</body>
+</html>

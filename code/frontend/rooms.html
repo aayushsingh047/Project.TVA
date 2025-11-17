@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Rooms - Hotel Booking</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">HotelBook</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="rooms.html" class="nav-link active">Rooms</a>
+                <div id="authNav"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Browse Rooms</h1>
+        <div id="roomsGrid" class="rooms-grid"></div>
+        <div id="pagination" class="pagination"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 HotelBook. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/rooms.js"></script>
+</body>
+</html>

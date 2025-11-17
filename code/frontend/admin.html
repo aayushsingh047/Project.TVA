@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Hotel Booking</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">HotelBook Admin</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <div id="authNav"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="admin-panel">
+            <div class="admin-sidebar">
+                <button class="tab-btn active" data-tab="rooms">Manage Rooms</button>
+                <button class="tab-btn" data-tab="orders">View Orders</button>
+            </div>
+
+            <div class="admin-content">
+                <div id="roomsTab" class="tab-content active">
+                    <h2>Manage Rooms</h2>
+                    <form id="roomForm" class="room-form">
+                        <input type="text" placeholder="Room Name" id="roomName" required>
+                        <textarea placeholder="Description" id="roomDesc"></textarea>
+                        <input type="number" placeholder="Price per Night" id="roomPrice" step="0.01" required>
+                        <input type="number" placeholder="Capacity" id="roomCapacity" required>
+                        <button type="submit" class="btn btn-primary">Add Room</button>
+                    </form>
+                    <div id="roomsList" class="rooms-list"></div>
+                </div>
+
+                <div id="ordersTab" class="tab-content">
+                    <h2>All Orders</h2>
+                    <div id="ordersList" class="orders-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 HotelBook. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

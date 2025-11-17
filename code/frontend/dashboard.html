@@ -1,0 +1,46 @@
+<!-- User dashboard showing bookings and account information -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Hotel Booking</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">HotelBook</div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="rooms.html" class="nav-link">Rooms</a>
+                <div id="authNav"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Welcome Back!</h1>
+            <p class="user-email" id="userEmail"></p>
+            <button onclick="handleLogout()" class="btn btn-secondary" style="margin-top: 1rem;">Logout</button>
+        </div>
+
+        <div class="bookings-section">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #1f2937; margin-bottom: 1.5rem;">Your Bookings</h2>
+            <div id="bookingsList"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 HotelBook. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

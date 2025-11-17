@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Hotel Booking - Reserve Your Perfect Stay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">✨ LUXE STAYS</div>
+            <div class="nav-links">
+                <a href="#explore">Explore</a>
+                <a href="#rooms">Rooms</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+                <button class="btn-secondary">Sign In</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Unforgettable Luxury</h1>
+            <p>Experience world-class hospitality at the world's most prestigious hotels</p>
+            <button class="btn-primary">Browse Rooms</button>
+        </div>
+    </section>
+
+    <!-- Search & Filter Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-form">
+                <div class="form-group">
+                    <label>Check-in</label>
+                    <input type="date" id="checkin">
+                </div>
+                <div class="form-group">
+                    <label>Check-out</label>
+                    <input type="date" id="checkout">
+                </div>
+                <div class="form-group">
+                    <label>Guests</label>
+                    <select id="guests">
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4+ Guests</option>
+                    </select>
+                </div>
+                <button class="btn-search">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Rooms -->
+    <section id="rooms" class="rooms-section">
+        <div class="section-header">
+            <h2>Our Signature Collections</h2>
+            <p>Handpicked rooms designed for ultimate comfort</p>
+        </div>
+        <div class="rooms-grid">
+            <div class="room-card">
+                <div class="room-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);"></div>
+                <div class="room-info">
+                    <div class="room-rating">★★★★★ (485 reviews)</div>
+                    <h3>Royal Suite</h3>
+                    <p>Spacious king suite with panoramic city views and premium amenities</p>
+                    <div class="amenities">
+                        <span>🛏️ King Bed</span>
+                        <span>🏙️ City View</span>
+                        <span>🌿 Spa Access</span>
+                    </div>
+                    <div class="room-footer">
+                        <div>
+                            <p class="price">$350</p>
+                            <p class="price-note">per night</p>
+                        </div>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room-card">
+                <div class="room-image" style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);"></div>
+                <div class="room-info">
+                    <div class="room-rating">★★★★★ (392 reviews)</div>
+                    <h3>Executive Penthouse</h3>
+                    <p>Ultimate luxury with private terrace, chef service, and personalized concierge</p>
+                    <div class="amenities">
+                        <span>👑 Premium Bed</span>
+                        <span>🏊 Private Pool</span>
+                        <span>👨‍🍳 Chef Service</span>
+                    </div>
+                    <div class="room-footer">
+                        <div>
+                            <p class="price">$850</p>
+                            <p class="price-note">per night</p>
+                        </div>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room-card">
+                <div class="room-image" style="background: linear-gradient(135deg, #c9a961 0%, #a8855c 100%);"></div>
+                <div class="room-info">
+                    <div class="room-rating">★★★★★ (528 reviews)</div>
+                    <h3>Deluxe Garden Suite</h3>
+                    <p>Serene escape with lush garden views and outdoor soaking tub</p>
+                    <div class="amenities">
+                        <span>🌺 Garden View</span>
+                        <span>🛁 Soaking Tub</span>
+                        <span>🧘 Wellness</span>
+                    </div>
+                    <div class="room-footer">
+                        <div>
+                            <p class="price">$520</p>
+                            <p class="price-note">per night</p>
+                        </div>
+                        <button class="btn-book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="amenities-section">
+        <div class="section-header">
+            <h2>World-Class Amenities</h2>
+            <p>Everything you need for an unforgettable stay</p>
+        </div>
+        <div class="amenities-grid">
+            <div class="amenity-card">
+                <div class="amenity-icon">🏊‍♂️</div>
+                <h4>Infinity Pool</h4>
+                <p>Heated outdoor pool with stunning city views</p>
+            </div>
+            <div class="amenity-card">
+                <div class="amenity-icon">🍽️</div>
+                <h4>Michelin Dining</h4>
+                <p>Award-winning restaurants and bars</p>
+            </div>
+            <div class="amenity-card">
+                <div class="amenity-icon">💆‍♀️</div>
+                <h4>Luxury Spa</h4>
+                <p>Full-service spa with expert therapists</p>
+            </div>
+            <div class="amenity-card">
+                <div class="amenity-icon">🏋️</div>
+                <h4>Fitness Center</h4>
+                <p>State-of-the-art gym with personal training</p>
+            </div>
+            <div class="amenity-card">
+                <div class="amenity-icon">🎭</div>
+                <h4>Entertainment</h4>
+                <p>Curated events and live performances</p>
+            </div>
+            <div class="amenity-card">
+                <div class="amenity-icon">🚗</div>
+                <h4>Concierge</h4>
+                <p>24/7 personalized service and assistance</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews-section">
+        <div class="section-header">
+            <h2>Guests Love Us</h2>
+            <p>See what our visitors say about their stays</p>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>"Absolutely phenomenal! The service was impeccable and every detail was perfect. Will definitely return."</p>
+                <div class="review-author">— Sarah Mitchell</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>"Exceeded all expectations. The location is perfect, rooms are stunning, and staff are incredibly helpful."</p>
+                <div class="review-author">— James Chen</div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>"Best hotel experience of my life. The attention to detail is remarkable. Worth every penny!"</p>
+                <div class="review-author">— Emma Rodriguez</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready for Your Luxury Escape?</h2>
+        <p>Join thousands of satisfied guests who choose us for their perfect getaway</p>
+        <button class="btn-primary-large">Start Booking Today</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>About Us</h4>
+                <p>Premium hotel booking experience</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Rooms</a></li>
+                    <li><a href="#">Amenities</a></li>
+                    <li><a href="#">Reviews</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <p>+1 (555) 123-4567</p>
+                <p>info@luxestays.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Luxe Stays. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

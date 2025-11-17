@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Details - Seasons Hotel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav>
+    <div class="logo">SEASONS HOTEL</div>
+    <ul>
+        <li onclick="window.location.href='index.html'">Home</li>
+        <li onclick="window.location.href='rooms.html'">Rooms</li>
+        <li><a href="login.html" id="authLink">Login</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+  <div class="room-detail" id="roomDetail" style="margin: 3rem 0;">
+    <div class="loading">Loading room details...</div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  const roomId = new URLSearchParams(window.location.search).get('id') || 1;
+
+  // Demo rooms data (same as room.html)
+  const roomsData = [
+    {
+      id: 1,
+      Hotel_Name: "Royal Suite",
+      City: "Premium City View",
+      Hotel_Price: 2500,
+      Hotel_Rating: 4.5,
+      Feature_1: "King Bed",
+      Feature_2: "City View",
+      Feature_3: "WiFi",
+      Feature_4: "Air Conditioning",
+      Image: "images/room_1.jpg",
+      description: "Experience luxury with our premium king-bed suite featuring breathtaking city views and modern amenities."
+    },
+    {
+      id: 2,
+      Hotel_Name: "Premier Suite",
+      City: "Luxury with Balcony",
+      Hotel_Price: 3500,
+      Hotel_Rating: 4.8,
+      Feature_1: "Double Bed",
+      Feature_2: "Private Balcony",
+      Feature_3: "Spa Access",
+      Feature_4: "Room Service",
+      Image: "images/room_2.jpg",
+      description: "Indulge in our spacious premier collection with premium amenities, spa access, and dedicated concierge service."
+    },
+    {
+      id: 3,
+      Hotel_Name: "Executive Suite",
+      City: "Ultimate Luxury",
+      Hotel_Price: 5000,
+      Hotel_Rating: 5,
+      Feature_1: "Premium Bed",
+      Feature_2: "Garden View",
+      Feature_3: "Gym Access",
+      Feature_4: "Dedicated Concierge",
+      Image: "images/room_3.jpg",
+      description: "Ultimate luxury awaits in our exclusive executive collection with private garden views and full-service amenities."
+    }
+  ];
+
+  function loadRoomDetail() {
+    const room = roomsData.find(r => r.id == roomId);
+    
+    if (!room) {
+      document.getElementById('roomDetail').innerHTML = '<p>Room not found</p>';
+      return;
+    }
+
+    const stars = '★'.repeat(Math.floor(room.Hotel_Rating)) + '☆'.repeat(5 - Math.floor(room.Hotel_Rating));
+
+    document.getElementById('roomDetail').innerHTML = `
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+        <div>
+          <img src="${room.Image}" alt="${room.Hotel_Name}" style="width: 100%; border-radius: 12px; object-fit: cover;">
+        </div>
+        <div>
+          <h1 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem; color: #1a1a1a;">${room.Hotel_Name}</h1>
+          <p style="color: #c9a961; font-size: 1.1rem; margin-bottom: 1rem; font-weight: 600;">${room.City}</p>
+          <div style="font-size: 1.2rem; color: #c9a961; margin-bottom: 1rem;">${stars} ${room.Hotel_Rating}/5</div>
+          
+          <p style="color: #666; line-height: 1.8; margin-bottom: 2rem; font-size: 1.05rem;">${room.description}</p>
+
+          <div style="background: #f5f3f0; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;">PRICE PER NIGHT</p>
+            <p style="font-size: 2rem; color: #c9a961; font-weight: 700;">₹${room.Hotel_Price.toLocaleString()}</p>
+          </div>
+
+          <div style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1.2rem; color: #1a1a1a; margin-bottom: 1rem;">Amenities</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+              ${room.Feature_1 ? `<span style="background: #e8e8e8; padding: 0.5rem 1rem; border-radius: 20px;">${room.Feature_1}</span>` : ''}
+              ${room.Feature_2 ? `<span style="background: #e8e8e8; padding: 0.5rem 1rem; border-radius: 20px;">${room.Feature_2}</span>` : ''}
+              ${room.Feature_3 ? `<span style="background: #e8e8e8; padding: 0.5rem 1rem; border-radius: 20px;">${room.Feature_3}</span>` : ''}
+              ${room.Feature_4 ? `<span style="background: #e8e8e8; padding: 0.5rem 1rem; border-radius: 20px;">${room.Feature_4}</span>` : ''}
+            </div>
+          </div>
+
+          <button onclick="bookRoom(${room.id}, '${room.Hotel_Name}', ${room.Hotel_Price})" style="width: 100%; padding: 1rem; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.3s;">
+            Book Now
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  function bookRoom(roomId, roomName, roomPrice) {
+    if (!APIService.isLoggedIn()) {
+      alert('Please login first to make a booking!');
+      window.location.href = 'auth.html';
+      return;
+    }
+
+    // Store room info and redirect to booking
+    sessionStorage.setItem('bookingRoom', JSON.stringify({ roomId, roomName, roomPrice }));
+    window.location.href = 'checkout.html';
+  }
+
+  document.addEventListener('DOMContentLoaded', loadRoomDetail);
+</script>
+
+</body>
+</html>

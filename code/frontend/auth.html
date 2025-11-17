@@ -1,0 +1,134 @@
+<!-- OTP verification page with email/phone input and OTP verification -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Hotel Booking</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Welcome Back</h1>
+                <p>Enter your credentials to book your stay</p>
+            </div>
+
+            <!-- Step 1: Email/Phone Input -->
+            <div id="step1" class="auth-step active">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="your@email.com" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+1 (555) 000-0000" class="form-input">
+                </div>
+
+                <button onclick="requestOTP()" class="btn btn-primary">Request OTP</button>
+                <p class="auth-message" id="step1Message"></p>
+            </div>
+
+            <!-- Step 2: OTP Verification -->
+            <div id="step2" class="auth-step">
+                <p class="step-info">A 6-digit code has been sent to your email and phone</p>
+                
+                <div class="otp-inputs">
+                    <input type="text" maxlength="1" class="otp-input" placeholder="0">
+                    <input type="text" maxlength="1" class="otp-input" placeholder="0">
+                    <input type="text" maxlength="1" class="otp-input" placeholder="0">
+                    <input type="text" maxlength="1" class="otp-input" placeholder="0">
+                    <input type="text" maxlength="1" class="otp-input" placeholder="0">
+                    <input type="text" maxlength="1" class="otp-input" placeholder="0">
+                </div>
+
+                <button onclick="verifyOTP()" class="btn btn-primary">Verify OTP</button>
+                <button onclick="backToStep1()" class="btn btn-secondary">Change Email/Phone</button>
+                
+                <p class="resend-text">
+                    Didn't receive code? <span onclick="requestOTP()" class="resend-link">Resend OTP</span>
+                </p>
+                <p class="auth-message" id="step2Message"></p>
+            </div>
+
+            <div class="auth-footer">
+                <p>Demo: Check browser console for OTP code</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+
+        async function requestOTP() {
+            const email = document.getElementById('email')?.value;
+            const phone = document.getElementById('phone')?.value;
+
+            console.log("[v0] Requesting OTP for:", email, phone);
+
+            if (!email || !phone) {
+                showMessage('Please enter both email and phone', 'error', 'step1Message');
+                return;
+            }
+
+            try {
+                const data = await APIService.requestOTP(email, phone);
+                
+                console.log("[v0] OTP Demo Code:", data.demo_otp);
+
+                document.getElementById('step1').classList.remove('active');
+                document.getElementById('step2').classList.add('active');
+                
+                showMessage(`OTP sent! Demo code: ${data.demo_otp}`, 'success', 'step2Message');
+            } catch (error) {
+                console.error("[v0] RequestOTP Error:", error);
+                showMessage('Error: ' + error.message, 'error', 'step1Message');
+            }
+        }
+
+        async function verifyOTP() {
+            const otpInputs = document.querySelectorAll('.otp-input');
+            const otp = Array.from(otpInputs).map(input => input.value).join('');
+            const email = document.getElementById('email').value;
+
+            console.log("[v0] Verifying OTP:", otp);
+
+            if (otp.length !== 6) {
+                showMessage('Please enter a valid 6-digit OTP', 'error', 'step2Message');
+                return;
+            }
+
+            try {
+                const result = await APIService.verifyOTP(email, otp);
+                
+                console.log("[v0] OTP Verified, token:", result.token);
+
+                showMessage('Verification successful! Redirecting...', 'success', 'step2Message');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } catch (error) {
+                console.error("[v0] VerifyOTP Error:", error);
+                showMessage('Error: ' + error.message, 'error', 'step2Message');
+            }
+        }
+
+        function showMessage(message, type, elementId) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.classList.remove('success', 'error');
+            element.classList.add(type);
+        }
+
+        function backToStep1() {
+            document.getElementById('step1').classList.add('active');
+            document.getElementById('step2').classList.remove('active');
+        }
+
+    </script>
+</body>
+</html>
